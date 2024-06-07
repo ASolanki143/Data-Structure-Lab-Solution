@@ -14,6 +14,7 @@ public class Lab15_3 {
         root = pb.delete(root, "a");
         System.out.println();
         pb.preOrder(root);
+        pb.searchElement("a", root);
     }
 }
 
@@ -68,6 +69,23 @@ class PhoneBook {
         }
         return temp;
     } 
+
+    public void searchElement(String name , Node root){
+        if(root == null){
+            System.out.println("---------- Element Note Found -----------");
+            return;
+        }
+        if(root.name.equals(name)){
+            System.out.println("---------- Element found ----------");
+        }
+        else if(root.name.compareTo(name) < 0){
+            searchElement(name, root.right);
+        }
+        else{
+            searchElement(name, root.left);
+        }
+
+    }
 
     public void inOrder(Node root){
         if(root != null){
