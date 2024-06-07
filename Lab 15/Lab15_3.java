@@ -1,20 +1,67 @@
+import java.util.Scanner;
+
 public class Lab15_3 {
     public static void main(String[] args) {
-        Node root = new Node(1234567890 , "d");
+
+        Scanner sc = new Scanner(System.in);
+        Node root = null;
         PhoneBook pb = new PhoneBook();
-        pb.insertMobileNumber(new Node(1234567890 , "b") , root);
-        pb.insertMobileNumber(new Node(1234567890 , "a") , root);
-        pb.insertMobileNumber(new Node(1234567890 , "c") , root);
-        pb.insertMobileNumber(new Node(1234567890 , "e") , root);
-        pb.insertMobileNumber(new Node(1234567890 , "f") , root);
+        
+        int x = 1;
 
-        System.out.println();
-        pb.preOrder(root);
+        while (x < 6) {
+            System.out.println("Enter 1 for insert mobile number");
+            System.out.println("      2 for delete mobile number");
+            System.out.println("      3 for search mobile number");
+            System.out.println("      4 for display mobile number in ascending order ");
+            System.out.println("      5 for display mobile number in descending order ");
+            System.out.println("      6 for break");
 
-        root = pb.delete(root, "a");
-        System.out.println();
-        pb.preOrder(root);
-        pb.searchElement("a", root);
+            x = sc.nextInt();
+            
+            switch (x) {
+                case 1:
+                    System.out.println("---------- Insert Mobile Number ----------");
+                    System.out.println("Enter mobile number : ");
+                    long number = sc.nextLong();
+                    System.out.println("Enter a name : ");
+                    String name = sc.next();
+                    Node n = new Node(number, name);
+                    if(root == null) root = n;
+                    else pb.insertMobileNumber(n, root);
+                    break;
+            
+                case 2:
+                    System.out.println("---------- Delete Mobile Number ----------");
+                    System.out.println("Enter name : ");
+                    name = sc.next();
+                    root = pb.delete(root, name);
+                    break;
+
+                case 3:
+                    System.out.println("---------- Search Mobile Number ----------");
+                    System.out.println("Enter name for search : ");
+                    name = sc.next();
+                    pb.searchElement(name, root);
+                    break;
+
+                case 4:
+                    System.out.println("----------- Phone Dictonary ----------");
+                    pb.ascending(root);
+                    System.out.println();
+                    break;
+                    
+                case 5:
+                    System.out.println("----------- Phone Dictonary ----------");
+                    pb.descending(root);
+                    System.out.println();
+                    break;    
+                default:
+                    break;
+            }
+        }
+
+        sc.close();
     }
 }
 
@@ -52,7 +99,7 @@ class PhoneBook {
         return root;
     }
 
-    public static Node replace(Node root){
+    public Node replace(Node root){
         if(root.left == null && root.right==null) return null;
         if(root.right == null) return root.left;
         if(root.left == null) return root.right;
@@ -76,7 +123,7 @@ class PhoneBook {
             return;
         }
         if(root.name.equals(name)){
-            System.out.println("---------- Element found ----------");
+            System.out.println("---------- " +root.name+ " : " +root.number+"----------");
         }
         else if(root.name.compareTo(name) < 0){
             searchElement(name, root.right);
@@ -87,23 +134,19 @@ class PhoneBook {
 
     }
 
-    public void inOrder(Node root){
+    public void ascending(Node root){
         if(root != null){
-            inOrder(root.left);
-            System.out.print(root.name  + " ");
-            inOrder(root.right);
+            ascending(root.left);
+            System.out.println(root.name  + " : " + root.number);
+            ascending(root.right);
         }
     }
 
-    public void preOrder(Node root){
+    public void descending(Node root){
         if(root != null){
-            System.out.println(root.name  + " ");
-            String a = (root.left == null) ? "-" : root.left.name;
-            System.out.println("Left = "+a);
-            String b = (root.right == null) ? "-" : root.right.name;
-            System.out.println("right = "+b);
-            preOrder(root.left);
-            preOrder(root.right);
+            descending(root.right);
+            System.out.println(root.name  + " : " + root.number);
+            descending(root.left);
         }
     }
 }
