@@ -43,6 +43,17 @@ class LinkedList{
         System.out.println(temp.data);
         System.out.println();
     }
+
+    public int countNode(){
+        if(head == null) return 0;
+        int count = 0;
+        Node temp = head;
+        while(temp != null){
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
 }
 
 class Node{
