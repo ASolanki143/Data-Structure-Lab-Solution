@@ -8,10 +8,12 @@ public class Lab4_2 {
 
     public static void deleteAtPosition(int position){
 
+        //position is greater then array length => return
         if(position >= arr.length) {
             return;
         }
 
+        //declare new array ( size - 1 )
         int[] tempArr = new int[arr.length-1];
 
         //before position

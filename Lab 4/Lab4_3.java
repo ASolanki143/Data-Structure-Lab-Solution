@@ -7,16 +7,21 @@ public class Lab4_3 {
     static int[] arr;
 
     public static void insertElement(int element){
+
+        //declare new array
         int[] tempArr = new int[arr.length + 1];
         int i = 0;
 
+        //for all array elements that smaller then element
         while(i < arr.length && arr[i] < element){
             tempArr[i] = arr[i];
             i++;
         }
 
+        //insert element
         tempArr[i] = element;
 
+        //for all array element that greater then element
         while(i < arr.length){
             tempArr[i+1] = arr[i];
             i++;

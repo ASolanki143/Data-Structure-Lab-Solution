@@ -21,10 +21,13 @@ public class Lab6_5 {
 }
 
 class BankAccount{
+
+    //define properties
     int account_No;
     String name;
     double balance;
 
+    //define a method for set properties
     public void setDetails(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter account no : ");
@@ -35,20 +38,29 @@ class BankAccount{
         balance = sc.nextDouble();
     }
 
+    //define method for deposit money
     public void depositMoney(double amount){
+
+        //add amount in balance
         balance += amount;
         System.out.println("Deposit Succesefull");
     }
 
+    //define method for withdraw money
     public void withdrawMoney(double amount){
+
+        //if balance is zero OR user have not sufficient balance then return 
         if(balance == 0 || balance - amount < 0){
             System.out.println("Not sufficient balance");
             return;
         }
+
+        //subtract amount from balance
         balance -= amount;
         System.out.println("Withdraw Succesefully");
     }
 
+    //define method for check balance
     public void checkBalance(){
         System.out.println("Balance = "+balance);
     }

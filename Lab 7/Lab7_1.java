@@ -5,11 +5,16 @@ import java.util.Scanner;
 public class Lab7_1{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        //take a size of array from user
         System.out.println("Enter a size of an array : ");
         int n = sc.nextInt();
+
+        //declare object of Stack Demo 
         StackDemo s = new StackDemo(n);
 
-        while(true){
+        int x = 1;
+        while(x > 6){
             System.out.println("Enter 1 for push");
             System.out.println("      2 for pop");
             System.out.println("      3 for peep");
@@ -17,7 +22,7 @@ public class Lab7_1{
             System.out.println("      5 for display");
             System.out.println("      6 for break");
 
-            int x = sc.nextInt();
+            x = sc.nextInt();
 
             switch (x) {
                 case 1:
@@ -57,64 +62,91 @@ public class Lab7_1{
                 default:
                     break;
             }
-
-            if(x >= 6) break;
         }
         sc.close();
     }
 }
 
 class StackDemo{
+
+    //define arr for store element of stack
     int[] arr;
+    //define top pointer
     int top;
 
+    //define constructer
     public StackDemo(int n){
+        //initalize the array of size n
         arr = new int[n];
+        //initalize top pointer to -1
         top = -1;
     }
 
+    //define method for push an element
     public void push(int element){
+
+        //top is pointing to the last element of an array
         if(top >= arr.length-1){
             System.out.println("---------- Stack Overflow ----------");
             return;
         }
+
+        //increment top pointer
         top++;
+
+        //insert element at top index
         arr[top] = element;
         System.out.println("Element pushed");
     }
 
+    //define method for pop an element from stack
     public int pop(){
+
+        //array is empty
         if(top == -1){
             System.out.println("---------- Stack Underflow ----------");
             return -1;
         }
+
+        //decrement top pointer
         top--;
+
+        //return top + 1 element
         return arr[top+1];
     }
 
+    //define method for peep element from stack
     public int peep(int i){
+
+        //check for stack underflow
         if(top - i + 1 < 0){
             System.out.println("---------- Stack Underflow ----------");
             return -1;
         }
+
+        //return ith element from top
         return arr[top - i + 1];
     }
 
     public void change(int i , int element){
+
+        //check for stack underflow
         if(top - i + 1 < 0){
             System.out.println("---------- Stack Underflow ----------");
             return;
         }
+
+        //change ith element from top
         arr[top - i + 1] = element;
         System.out.println("Element changed");
     }
 
+    //define method from display
     public void display(){
         System.out.println();
         for(int i = top ; i >= 0 ; i--){
             System.out.print(arr[i] + " ");
         }
-
         System.out.println();
     }
 }

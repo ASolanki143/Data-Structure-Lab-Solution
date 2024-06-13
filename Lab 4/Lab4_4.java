@@ -9,15 +9,24 @@ public class Lab4_4 {
     public static void deleteElement(int element){
 
         boolean find = false;
+
+        //find element in array
         for(int n : arr){
             if(n == element) find = true;
         }
 
-        if(!find) return;
+        //if element not found then return
+        if(!find){
+            System.out.println("Element not found");
+            return;
+        }
+
+        //declare a new array of size n + 1
         int[] tempArr = new int[arr.length - 1];
 
         int i = 0;
 
+        //for all array element that smaller than element
         while (i < arr.length && arr[i] < element) {
             tempArr[i] = arr[i];
             i++;
@@ -25,6 +34,7 @@ public class Lab4_4 {
 
         i++;
 
+        //for all array element that greater than element
         while(i < arr.length){
             tempArr[i-1] = arr[i];
             i++;

@@ -8,7 +8,10 @@ public class Lab4_1{
 
     public static void insertAtPosition(int position , int element){
 
+        //position is greater then array length => return
         if(position >= arr.length) return;
+
+        //declare new array 
         int[] finalArr = new int[arr.length + 1];
 
         //before position
