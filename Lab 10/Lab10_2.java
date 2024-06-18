@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Main class for demonstrating operations on a singly linked list
 public class Lab10_2 {
 
     public static void main(String[] args) {
@@ -168,22 +167,5 @@ class SinglyLinkedList{
         }
         System.out.println(temp.data); // Print data of last node
         System.out.println(); // Blank line for formatting
-    }
-}
-
-// Node class for singly linked list
-class Node {
-    int data;   // Data stored in the node
-    Node next;  // Reference to the next node in the list
-
-    // Constructor with data parameter
-    public Node(int data) {
-        this.data = data; // Initialize data
-    }
-
-    // Constructor with both data and next node parameters
-    public Node(int data, Node next) {
-        this.data = data;  // Initialize data
-        this.next = next;  // Initialize next pointer
     }
 }

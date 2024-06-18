@@ -37,7 +37,7 @@ class SortLL {
 
     public void sortLinkedList(Node head) {
         Node p, temp; // Declare two node pointers, p and temp
-        int b; // Variable to hold temporary data during swapping
+        int b; 
 
         p = head; // Start with the head of the linked list
 

@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Main class to compare two singly linked lists
 public class Lab10_4 {
 
     static SinglyLinkedList linkedList = new SinglyLinkedList(); // Instance of SinglyLinkedList for operations

@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Main class to demonstrate operations on a queue
 public class Lab11_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -93,26 +92,5 @@ class Queue{
         }
         System.out.println(temp.data); // Print the last node's data
         System.out.println();
-    }
-}
-
-// Node class to represent individual elements in the queue
-class Node{
-    int data; // Data of the node
-    Node next; // Reference to the next node
-
-    // Constructors
-    public Node(){
-        this.data = 0;
-        this.next = null;
-    }
-
-    public Node(int data){
-        this.data = data;
-    }
-
-    public Node(int data , Node next){
-        this.data = data;
-        this.next = next;
     }
 }

@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Main class to demonstrate operations on a stack
 public class Lab11_1{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

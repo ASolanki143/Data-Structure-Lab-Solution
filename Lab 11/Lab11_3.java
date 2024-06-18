@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Main class for removing duplicate elements from a singly linked list
 public class Lab11_3 {
 
     // Method to remove duplicates from the linked list
@@ -71,26 +70,5 @@ public class Lab11_3 {
         }
         
         sc.close(); // Close the scanner object
-    }
-}
-
-// Node class to represent individual elements (nodes) in the linked list
-class Node {
-    int data; // Data of the node
-    Node next; // Reference to the next node
-
-    // Constructors
-    public Node(){
-        this.data = 0;
-        this.next = null;
-    }
-
-    public Node(int data){
-        this.data = data;
-    }
-
-    public Node(int data , Node next){
-        this.data = data;
-        this.next = next;
     }
 }

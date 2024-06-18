@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Main class for demonstrating linked list reversal
 public class Lab12_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

@@ -1,4 +1,3 @@
-// Main class to demonstrate linked list operations
 public class CreateLL {
     public static void main(String[] args) {
         LinkedList ll = new LinkedList(); // Creating an instance of LinkedList
