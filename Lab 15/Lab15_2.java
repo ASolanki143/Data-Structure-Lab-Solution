@@ -1,176 +1,189 @@
-// WAP to find the smallest and largest elements in the Binary Search Tree. 
+// Program to find the smallest and largest elements in a Binary Search Tree (BST)
 
 import java.util.Scanner;
 
 public class Lab15_2 {
     public static void main(String[] args) {
+        // Create a Scanner object for reading input from the user
         Scanner sc = new Scanner(System.in);
 
+        // Create an instance of BSTTree to manage BST operations
         BSTTree tree = new BSTTree();
-        TreeNode root = null;
+        TreeNode root = null;  // Initialize the root of the BST
 
-        System.out.println("Enter elements of BST \nEnter -1 for break ");
+        // Prompt the user to enter elements of the BST
+        System.out.println("Enter elements of BST \nEnter -1 to stop ");
         int element;
 
-        while(true){
+        // Read elements from the user until they enter -1
+        while (true) {
             element = sc.nextInt();
-            if(element == -1) break;
-            TreeNode n = new TreeNode(element);
-            if(root == null) {
-                root = n;
-            }
-            else{
-                root = tree.insertInBST(element, root);
+            if (element == -1) break;  // Exit the loop if -1 is entered
+            TreeNode n = new TreeNode(element);  // Create a new TreeNode
+            if (root == null) {
+                root = n;  // Set the first element as root
+            } else {
+                root = tree.insertInBST(element, root);  // Insert the element into the BST
             }
         }
 
+        // Perform in-order traversal of the BST and print the elements
         tree.inOrder(root);
         System.out.println();
 
-        System.out.println("Smallest element : "+tree.findMin(root));
-        System.out.println("Largest element"+tree.findMax(root));
+        // Find and print the smallest element in the BST
+        System.out.println("Smallest element: " + tree.findMin(root));
+        // Find and print the largest element in the BST
+        System.out.println("Largest element: " + tree.findMax(root));
 
+        // Close the Scanner
         sc.close();
     }
 }
 
-class BSTTree{
+// Class to represent a Binary Search Tree (BST) and its operations
+class BSTTree {
 
-    public TreeNode insertInBST(int element , TreeNode root){
-        TreeNode n = new TreeNode(element);
-        if(root == null){
-            root = n;
+    // Method to insert an element into the BST
+    public TreeNode insertInBST(int element, TreeNode root) {
+        TreeNode n = new TreeNode(element);  // Create a new TreeNode with the given element
+        if (root == null) {
+            root = n;  // If the tree is empty, set the new node as root
             return root;
         }
 
-        TreeNode temp = root;
+        TreeNode temp = root;  // Temporary variable to traverse the tree
 
-        while(temp != null){
-            if(temp.data == element) break;
-            if(temp.data > element){
-                if(temp.left == null){
-                    temp.left = n;
+        // Traverse the tree to find the correct position for the new node
+        while (temp != null) {
+            if (temp.data == element) break;  // If the element already exists, do nothing
+            if (temp.data > element) {
+                if (temp.left == null) {
+                    temp.left = n;  // Insert the new node as the left child
                     break;
+                } else {
+                    temp = temp.left;  // Move to the left child
                 }
-                else{
-                    temp = temp.left;
-                }
-            }
-            else if(temp.data < element){
-                if(temp.right == null){
-                    temp.right = n;
+            } else if (temp.data < element) {
+                if (temp.right == null) {
+                    temp.right = n;  // Insert the new node as the right child
                     break;
-                }
-                else{
-                    temp = temp.right;
+                } else {
+                    temp = temp.right;  // Move to the right child
                 }
             }
         }
 
-        return root;
+        return root;  // Return the updated root
     }
 
-    public TreeNode delete(TreeNode root ,int n){
-        if(root == null) return null;
-        if(root.data==n){
-            return replace(root);
+    // Method to delete an element from the BST
+    public TreeNode delete(TreeNode root, int n) {
+        if (root == null) return null;  // If the tree is empty, return null
+        if (root.data == n) {
+            return replace(root);  // If the element is found, replace it
         }
-        if(root.data < n) root.right = delete(root.right , n);
-        if(root.data > n) root.left = delete(root.left , n);
-        return root;
+        if (root.data < n) root.right = delete(root.right, n);  // Recur on the right subtree
+        if (root.data > n) root.left = delete(root.left, n);  // Recur on the left subtree
+        return root;  // Return the updated root
     }
 
-    public TreeNode replace(TreeNode root){
-        if(root.left == null && root.right==null) return null;
-        if(root.right == null) return root.left;
-        if(root.left == null) return root.right;
-        TreeNode temp = root.right;
-        if(temp.left == null){
+    // Helper method to replace a node in the BST
+    public TreeNode replace(TreeNode root) {
+        if (root.left == null && root.right == null) return null;  // No children
+        if (root.right == null) return root.left;  // Only left child
+        if (root.left == null) return root.right;  // Only right child
+        TreeNode temp = root.right;  // Temporary variable for replacement
+
+        // Find the appropriate position for the left subtree
+        if (temp.left == null) {
             temp.left = root.left;
-        }
-        else{
+        } else {
             TreeNode temp2 = temp;
-            while(temp2.left != null){
+            while (temp2.left != null) {
                 temp2 = temp2.left;
             }
-            temp2.left = root.left;     
+            temp2.left = root.left;
         }
-        return temp;
+        return temp;  // Return the updated node
     }
 
-    public void searchElement(int element , TreeNode root){
-        if(root == null){
-            System.out.println("---------- Element Note Found -----------");
+    // Method to search for an element in the BST
+    public void searchElement(int element, TreeNode root) {
+        if (root == null) {
+            System.out.println("---------- Element Not Found -----------");
             return;
         }
-        if(root.data == element){
-            System.out.println("---------- Element found ----------");
-        }
-        else if(root.data < element){
-            searchElement(element, root.right);
-        }
-        else{
-            searchElement(element, root.left);
+        if (root.data == element) {
+            System.out.println("---------- Element Found ----------");
+        } else if (root.data < element) {
+            searchElement(element, root.right);  // Recur on the right subtree
+        } else {
+            searchElement(element, root.left);  // Recur on the left subtree
         }
     }
 
-    public void inOrder(TreeNode root){
-        if(root != null){
+    // Method to perform in-order traversal of the BST and print elements
+    public void inOrder(TreeNode root) {
+        if (root != null) {
             inOrder(root.left);
-            System.out.print(root.data  + " ");
+            System.out.print(root.data + " ");
             inOrder(root.right);
         }
     }
 
-    public void preOrder(TreeNode root){
-        if(root != null){
-            System.out.print(root.data  + " ");
-            // int a = (root.left == null) ? 0 : root.left.data;
-            // System.out.println("Left = "+a);
-            // int b = (root.right == null) ? 0 : root.right.data;
-            // System.out.println("right = "+b);
+    // Method to perform pre-order traversal of the BST and print elements
+    public void preOrder(TreeNode root) {
+        if (root != null) {
+            System.out.print(root.data + " ");
             preOrder(root.left);
             preOrder(root.right);
         }
     }
 
-    public void postOrder(TreeNode root){
-        if(root != null){
+    // Method to perform post-order traversal of the BST and print elements
+    public void postOrder(TreeNode root) {
+        if (root != null) {
             postOrder(root.left);
             postOrder(root.right);
             System.out.print(root.data + " ");
         }
     }
 
-    public int findMin(TreeNode root){
-        TreeNode temp = root;
-        while(temp.left != null){
-            temp = temp.left;
+    // Method to find the smallest element in the BST
+    public int findMin(TreeNode root) {
+        TreeNode temp = root;  // Temporary variable to traverse the tree
+        while (temp.left != null) {
+            temp = temp.left;  // Move to the leftmost node
         }
-        return temp.data;
+        return temp.data;  // Return the data of the leftmost node
     }
 
-    public int findMax(TreeNode root){
-        TreeNode temp = root;
-        while(temp.right != null){
-            temp = temp.right;
+    // Method to find the largest element in the BST
+    public int findMax(TreeNode root) {
+        TreeNode temp = root;  // Temporary variable to traverse the tree
+        while (temp.right != null) {
+            temp = temp.right;  // Move to the rightmost node
         }
-        return temp.data;
+        return temp.data;  // Return the data of the rightmost node
     }
 
 }
 
-class TreeNode{
-    int data;
-    TreeNode left;
-    TreeNode right;
+// Class to represent a node in the binary search tree
+class TreeNode {
+    int data;  // Data stored in the node
+    TreeNode left;  // Reference to the left child
+    TreeNode right;  // Reference to the right child
 
-    public TreeNode(){
+    // Default constructor
+    public TreeNode() {
         this.left = null;
         this.right = null;
     }
 
-    public TreeNode(int data){
+    // Constructor to create a node with a specific data value
+    public TreeNode(int data) {
         super();
         this.data = data;
     }
