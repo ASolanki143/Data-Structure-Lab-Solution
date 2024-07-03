@@ -5,28 +5,28 @@ public class Lab10_4 {
     static SinglyLinkedList linkedList = new SinglyLinkedList(); // Instance of SinglyLinkedList for operations
 
     // Method to check if two linked lists are identical
-    public static boolean checkLinkedLists(Node head1 , Node head2){
+    public static boolean checkLinkedLists(SinglyLinkedList ll1 , SinglyLinkedList ll2){
         // If both heads are null, lists are identical
-        if(head1 == null && head2 == null){
+        if(ll1.head == null && ll2.head == null){
             return true;
         }
 
         // If one head is null and other is not, lists are not identical
-        if(head1 == null || head2 == null){
+        if(ll1.head == null || ll2.head == null){
             return false;
         }
 
         // Count nodes in both lists
-        int size1 = linkedList.countNode(head1);
-        int size2 = linkedList.countNode(head2);
+        int size1 = ll1.countNode();
+        int size2 = ll2.countNode();
 
         // If sizes differ, lists are not identical
         if(size1 != size2){
             return false;
         }
 
-        Node temp1 = head1;
-        Node temp2 = head2;
+        Node temp1 = ll1.head;
+        Node temp2 = ll2.head;
 
         // Traverse both lists and compare each node's data
         while(temp1 != null && temp2 != null){
@@ -44,16 +44,16 @@ public class Lab10_4 {
     // Main method to demonstrate the comparison of linked lists
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Node head1 = null; // Head of first linked list
-        Node head2 = null; // Head of second linked list
-
+        
+        SinglyLinkedList ll1 = new SinglyLinkedList();
+        SinglyLinkedList ll2 = new SinglyLinkedList();
         // Input elements for the first linked list
         System.out.println("Enter elements of first linkedlist\nEnter -1 for break");
         int x;
         while(true){
             x = sc.nextInt();
             if(x == -1) break;
-            head1 = linkedList.insertAtLast(head1, x); // Insert element at the end of the first linked list
+            ll1.insertAtLast(x); // Insert element at the end of the first linked list
         }
 
         // Input elements for the second linked list
@@ -61,9 +61,16 @@ public class Lab10_4 {
         while(true){
             x = sc.nextInt();
             if(x == -1) break;
-            head2 = linkedList.insertAtLast(head2, x); // Insert element at the end of the second linked list
+            ll2.insertAtLast(x); // Insert element at the end of the second linked list
         }
 
+        if(checkLinkedLists(ll1, ll2)){
+            System.out.println("Both Linked List are same");
+        }
+        else{
+            System.out.println("Both Linked List are not same");
+        }
+        
         sc.close(); // Close scanner object
     }
 }

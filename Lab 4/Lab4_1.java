@@ -14,20 +14,31 @@ public class Lab4_1{
         //declare new array 
         int[] finalArr = new int[arr.length + 1];
 
-        //before position
+        // //before position
 
-        for(int i = 0 ; i < position ; i++){
-            finalArr[i] = arr[i];
-        }
+        // for(int i = 0 ; i < position ; i++){
+        //     finalArr[i] = arr[i];
+        // }
 
-        //insert element
+        // //insert element
 
-        finalArr[position] = element;
+        // finalArr[position] = element;
 
-        //after position
+        // //after position
 
-        for(int i = position+1 ; i < finalArr.length ; i++){
-            finalArr[i] = arr[i-1];
+        // for(int i = position+1 ; i < finalArr.length ; i++){
+        //     finalArr[i] = arr[i-1];
+        // }
+
+        int j = 0;
+        for(int i = 0 ; i < finalArr.length ; i++){
+            if (i == position) {
+                finalArr[i] = element;
+            }
+            else{
+                finalArr[i] = arr[j];
+                j++;
+            }
         }
 
         arr = finalArr;

@@ -3,10 +3,9 @@ import java.util.Scanner;
 public class Lab10_2 {
 
     public static void main(String[] args) {
-        Node head = null; // Initialize head of the linked list to null
         Scanner sc = new Scanner(System.in);
-        SinglyLinkedList linkedList = new SinglyLinkedList(); // Create instance of SinglyLinkedList class
-        int x = 1; // Initialize loop control variable
+        SinglyLinkedList linkedList = new SinglyLinkedList();
+        int x = 1;
 
         // Loop for menu-driven operations
         while(x < 7){
@@ -23,31 +22,31 @@ public class Lab10_2 {
                 case 1:
                     System.out.println("Enter an element : ");
                     int element1 = sc.nextInt(); // Read element to be inserted
-                    head = linkedList.insertAtFirst(head, element1); // Insert at the beginning
+                    linkedList.insertAtFirst(element1); // Insert at the beginning of the linked list
                     break;
 
                 case 2:
                     System.out.println("Enter an element : ");
                     int element2 = sc.nextInt(); // Read element to be inserted
-                    head = linkedList.insertAtLast(head, element2); // Insert at the end
+                    linkedList.insertAtLast(element2); // Insert at the end of the linked list
                     break;
 
                 case 3:
-                    head = linkedList.deleteAtFirst(head); // Delete from the beginning
+                    linkedList.deleteAtFirst(); // Delete from the beginning of the linked list
                     break;
             
                 case 4:
-                    head = linkedList.deleteAtLast(head); // Delete from the end
+                    linkedList.deleteAtLast(); // Delete from the end of the linked list
                     break;
 
                 case 5:
                     System.out.println("Enter position ");
                     int position = sc.nextInt(); // Read position to delete
-                    head = linkedList.deleteAtPosition(head, position); // Delete at specified position
+                    linkedList.deleteAtPosition(position); // Delete at specified position in the linked list
                     break;
 
                 case 6:
-                    linkedList.display(head); // Display all elements in the linked list
+                    linkedList.display(); // Display all elements in the linked list
                     break;
 
                 default:
@@ -62,76 +61,75 @@ public class Lab10_2 {
 // Singly linked list class
 class SinglyLinkedList{
 
+    Node head; // Head of the linked list
+
+    // Constructor to initialize an empty linked list
+    public SinglyLinkedList(){
+        this.head = null;
+    }
+
     // Method to insert an element at the beginning of the linked list
-    public Node insertAtFirst(Node head , int element){
-        Node n = new Node(element); // Create a new node with given element
-        if(head == null){
-            n.next = null; // If list is empty, set next of new node to null
-        }
-        else{
-            n.next = head; // Otherwise, set next of new node to current head
-        }
-        return n; // Return new head of the linked list
+    public void insertAtFirst(int element){
+        Node n = new Node(element); // Create a new node with the given element
+        n.next = head; // Point new node's next to current head
+        head = n; // Update head to the new node
     }
 
     // Method to insert an element at the end of the linked list
-    public Node insertAtLast(Node head , int element){
-        Node n = new Node(element , null); // Create a new node with given element and null next
+    public void insertAtLast(int element){
+        Node n = new Node(element , null); // Create a new node with the given element and null next
         if(head == null){
-            return n; // If list is empty, return the new node as head
+            head = n; // If list is empty, make the new node the head
+        } else {
+            Node temp = head;
+            while(temp.next != null){
+                temp = temp.next; // Traverse to the last node
+            }
+            temp.next = n; // Set next of last node to the new node
         }
-
-        Node temp = head;
-        while(temp.next != null){
-            temp = temp.next; // Traverse to the last node
-        }
-
-        temp.next = n; // Set next of last node to the new node
-        return head; // Return head of the linked list
     }
 
     // Method to delete the first element of the linked list
-    public Node deleteAtFirst(Node head){
+    public void deleteAtFirst(){
         if(head == null || head.next == null){
-            return null; // If list is empty or has only one node, return null
+            head = null; // If list is empty or has only one node, set head to null
+        } else {
+            head = head.next; // Set head to the next node in the list
         }
-
-        return head.next; // Return the next node as the new head
     }
 
     // Method to delete the last element of the linked list
-    public Node deleteAtLast(Node head){
+    public void deleteAtLast(){
         if(head == null || head.next == null){
-            return null; // If list is empty or has only one node, return null
+            head = null; // If list is empty or has only one node, set head to null
+        } else {
+            Node prev = head;
+            Node curr = head.next;
+            while(curr.next != null){
+                prev = curr;
+                curr = curr.next; // Traverse to the last node
+            }
+            prev.next = null; // Set next of second last node to null
         }
-
-        Node prev = head;
-        Node curr = head.next;
-        while(curr.next != null){
-            prev = curr;
-            curr = curr.next; // Traverse to the last node
-        }
-
-        prev.next = null; // Set next of second last node to null
-        return head; // Return head of the linked list
     }
 
     // Method to delete an element at a specified position in the linked list
-    public Node deleteAtPosition(Node head , int position){
+    public void deleteAtPosition(int position){
         if(head == null){
             System.out.println("---------- LinkedList is Empty ----------");
-            return null; // If list is empty, print message and return null
+            return; // If list is empty, print message and return
         }
         
-        int size = countNode(head); // Get size of the linked list
+        int size = countNode(); // Get size of the linked list
 
         if(size < position){
             System.out.println("Invalid Position");
-            return head; // If position is invalid, print message and return head
+            return; // If position is invalid, print message and return
         }
 
         if(size == position){
-            return deleteAtLast(head); // If position is last, delete last node
+            deleteAtLast(); // If position is last, delete last node
+            return;
         }
 
         Node prev = null;
@@ -144,11 +142,10 @@ class SinglyLinkedList{
         }
 
         prev.next = curr.next; // Skip the node at given position
-        return head; // Return head of the linked list
     }
 
     // Method to count nodes in the linked list
-    public int countNode(Node head){
+    public int countNode(){
         Node temp = head;
         int size = 0;
         while(temp != null){
@@ -159,7 +156,11 @@ class SinglyLinkedList{
     }
 
     // Method to display all elements of the linked list
-    public void display(Node head){
+    public void display(){
+        if(head == null){
+            System.out.println("LinkedList is Empty"); // If list is empty, print message
+            return;
+        }
         Node temp = head;
         while(temp.next != null){
             System.out.print(temp.data + " -> "); // Print data of each node
@@ -167,5 +168,23 @@ class SinglyLinkedList{
         }
         System.out.println(temp.data); // Print data of last node
         System.out.println(); // Blank line for formatting
+    }
+}
+
+// Node class for creating nodes of the linked list
+class Node {
+    int data; // Data of the node
+    Node next; // Reference to the next node
+
+    // Constructor to initialize a node with given data and null next reference
+    public Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+
+    // Constructor to initialize a node with given data and next node reference
+    public Node(int data, Node next){
+        this.data = data;
+        this.next = next;
     }
 }

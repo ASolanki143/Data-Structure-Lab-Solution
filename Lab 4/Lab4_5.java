@@ -23,11 +23,11 @@ public class Lab4_5 {
 
         //call mathod for removing dublicate
         int[] uniqueArray = removeDuplicates(array);
-
+        
         System.out.println("Array without duplicates: ");
 
-        for(int n : uniqueArray){
-            System.out.print(n + " ");
+        for(int x : uniqueArray){
+            System.out.print(x + " ");
         }
 
         sc.close();

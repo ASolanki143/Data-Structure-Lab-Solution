@@ -8,25 +8,25 @@ public class Lab4_8 {
 
         //take a size of an array from user
         System.out.println("Enter size of array");
-        int n= sc.nextInt();
+        int n = sc.nextInt();
 
         //declare an array of size n
-        int arr[]=new int[n];
+        int arr[] = new int[n];
 
         //take elements of array from user
         System.out.println("Enter elements of array");
-        for(int i=0;i<n;i++)
+        for(int i=0 ; i<n ; i++)
         {
-            arr[i]=sc.nextInt();
+            arr[i] = sc.nextInt();
         }
 
         //find sum , maximum element and minimum element
         int sum=0;
         int min=arr[0];
         int max=arr[0];
-        for(int i=0;i<n;i++)
+        for(int i=0 ; i<n ; i++)
         {
-            sum+=arr[i];
+            sum += arr[i];
             if(arr[i]<min)
             {
                 min=arr[i];

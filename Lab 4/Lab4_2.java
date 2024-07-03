@@ -16,16 +16,24 @@ public class Lab4_2 {
         //declare new array ( size - 1 )
         int[] tempArr = new int[arr.length-1];
 
-        //before position
+        // //before position
 
-        for(int i = 0 ; i < position ; i++){
-            tempArr[i] = arr[i];
-        }
+        // for(int i = 0 ; i < position ; i++){
+        //     tempArr[i] = arr[i];
+        // }
 
-        //after position
+        // //after position
 
-        for(int i = position+1 ; i < arr.length ; i++){
-            tempArr[i-1] = arr[i];
+        // for(int i = position+1 ; i < arr.length ; i++){
+        //     tempArr[i-1] = arr[i];
+        // }
+
+        int j = 0;
+        for(int i = 0 ; i < arr.length ; i++){
+            if(i != position){
+                tempArr[j] = arr[i];
+                j++;
+            }
         }
 
         arr = tempArr;

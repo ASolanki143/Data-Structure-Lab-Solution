@@ -32,8 +32,7 @@ public class Lab7_2 {
         }
 
         next = str.charAt(index-1);
-        if(next != ' ' && s.peek() != 'c'){
-            System.out.println("third");
+        if(next != ' ' && s.peek() != 'c' || index != str.length()){
             return false;
         }
         return true;

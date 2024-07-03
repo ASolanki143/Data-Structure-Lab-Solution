@@ -26,7 +26,7 @@ public class Lab4_3 {
             tempArr[i+1] = arr[i];
             i++;
         }
-
+        
         arr = tempArr;
     }
     public static void main(String[] args) {
