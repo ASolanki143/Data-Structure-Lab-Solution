@@ -105,7 +105,7 @@ class SinglyLinkedList{
         } else {
             Node prev = head;
             Node curr = head.next;
-            while(curr.next != null){
+            while(prev.next != null){
                 prev = curr;
                 curr = curr.next; // Traverse to the last node
             }

@@ -48,20 +48,19 @@ class ReverseLL {
 
         Node prevNode = null; // Pointer to the previous node in the reversed list
         Node currNode = head; // Pointer to the current node in the original list
-        Node nextNode = head.next; // Pointer to the next node in the original list
+        Node nextNode = head; // Pointer to the next node in the original list
 
         // Traverse through the original list and reverse the pointers
-        while(nextNode != null){
+        while(currNode != null){
+            nextNode = nextNode.next; // Move nextNode to the next node in the original list
             currNode.next = prevNode; // Reverse the pointer to point backwards
             prevNode = currNode; // Move prevNode to currNode
             currNode = nextNode; // Move currNode to nextNode
-            nextNode = nextNode.next; // Move nextNode to the next node in the original list
         }
 
         // Handle the last node in the list
-        currNode.next = prevNode; // Reverse the pointer for the last node
 
-        return currNode; // Return the new head of the reversed list
+        return prevNode; // Return the new head of the reversed list
     }
 }
 

@@ -7,7 +7,6 @@ public class Lab14_1 {
         TreeNode root = null; // Initialize the root of the BST
         int x = 1; // Control variable for the while loop
         int element; // Variable to store the element to be inserted, deleted, or searched
-
         // Menu-driven interface
         while (x < 7) {
             System.out.println("\nEnter 1 for insert");
@@ -17,7 +16,6 @@ public class Lab14_1 {
             System.out.println("      5 for inorder traversal");
             System.out.println("      6 for postorder traversal");
             System.out.println("      7 for break");
-
             x = sc.nextInt(); // Read the user's choice
 
             switch (x) {
@@ -83,19 +81,23 @@ class BSTTree {
 
         // Traverse the tree to find the correct position for the new node
         while (temp != null) {
-            if (temp.data == element) break; // If the element already exists, do nothing
+            if (temp.data == element)
+                break; // If the element already exists, do nothing
             if (temp.data > element) { // If the current node's data is greater than the element
                 if (temp.left == null) {
                     temp.left = n; // Insert the new node to the left
                     break;
-                } else {
+                }
+                else {
                     temp = temp.left; // Move to the left child
                 }
-            } else if (temp.data < element) { // If the current node's data is less than the element
+            }
+            else if (temp.data < element) { // If the current node's data is less than the element
                 if (temp.right == null) {
                     temp.right = n; // Insert the new node to the right
                     break;
-                } else {
+                }
+                else {
                     temp = temp.right; // Move to the right child
                 }
             }
@@ -106,24 +108,31 @@ class BSTTree {
 
     // Method to delete an element from the BST
     public TreeNode delete(TreeNode root, int n) {
-        if (root == null) return null; // If the tree is empty, return null
+        if (root == null)
+            return null; // If the tree is empty, return null
         if (root.data == n) {
             return replace(root); // If the element is found, replace the node
         }
-        if (root.data < n) root.right = delete(root.right, n); // Traverse the right subtree
-        if (root.data > n) root.left = delete(root.left, n); // Traverse the left subtree
+        if (root.data < n)
+            root.right = delete(root.right, n); // Traverse the right subtree
+        if (root.data > n)
+            root.left = delete(root.left, n); // Traverse the left subtree
         return root; // Return the root of the tree
     }
 
     // Method to replace a node in the BST
     public TreeNode replace(TreeNode root) {
-        if (root.left == null && root.right == null) return null; // If the node is a leaf, remove it
-        if (root.right == null) return root.left; // If the node has only left child, replace with left child
-        if (root.left == null) return root.right; // If the node has only right child, replace with right child
+        if (root.left == null && root.right == null)
+            return null; // If the node is a leaf, remove it
+        if (root.right == null)
+            return root.left; // If the node has only left child, replace with left child
+        if (root.left == null)
+            return root.right; // If the node has only right child, replace with right child
         TreeNode temp = root.right;
         if (temp.left == null) {
             temp.left = root.left; // If the right child has no left child, replace with right child
-        } else {
+        }
+        else {
             TreeNode temp2 = temp;
             while (temp2.left != null) {
                 temp2 = temp2.left; // Find the leftmost node in the right subtree
@@ -141,9 +150,11 @@ class BSTTree {
         }
         if (root.data == element) {
             System.out.println("---------- Element found ----------");
-        } else if (root.data < element) {
+        }
+        else if (root.data < element) {
             searchElement(element, root.right); // Search in the right subtree
-        } else {
+        }
+        else {
             searchElement(element, root.left); // Search in the left subtree
         }
     }

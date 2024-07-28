@@ -167,12 +167,26 @@ class Polynomial {
     // Method to display the polynomial
     public void display() {
         Node temp = head;
-        while (temp.next != null) {
-            char sign = (temp.next.coefficient > 0) ? '+' : '-'; // Determine the sign for the next term
-            System.out.print(temp.coefficient + "x^" + temp.exponent + " " + sign + " ");
+        char sign;
+        sign = (temp.coefficient > 0) ? '+' : '-';
+        if(temp.exponent == 0){
+            System.out.print(Math.abs(temp.coefficient) +" ");
+        }
+        else{
+            System.out.print(Math.abs(temp.coefficient) + "x^" + temp.exponent + " ");
+        }
+        temp = temp.next;
+        while (temp != null) {
+            sign = (temp.coefficient > 0) ? '+' : '-';
+            if(temp.exponent == 0){
+                System.out.print(sign + " " + Math.abs(temp.coefficient) + " ");
+            }
+            else{
+                System.out.print(sign + " " + Math.abs(temp.coefficient) + "x^" + temp.exponent + " ");
+            }
             temp = temp.next;
         }
-        System.out.println(temp.coefficient + "x^" + temp.exponent + " "); // Print the last term
+        
         System.out.println();
     }
 }
@@ -188,7 +202,7 @@ class Node {
         this.next = null;
     }
 
-    public Node(int coefficient, int exponent) {
+    public Node(int coefficient , int exponent) {
         this();
         this.coefficient = coefficient;
         this.exponent = exponent;

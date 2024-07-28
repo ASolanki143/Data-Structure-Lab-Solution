@@ -32,7 +32,7 @@ public class Lab7_2 {
         }
 
         next = str.charAt(index-1);
-        if(next != ' ' && s.peek() != 'c' || index != str.length()){
+        if(next != ' ' && s.peek() != 'c'){
             return false;
         }
         return true;

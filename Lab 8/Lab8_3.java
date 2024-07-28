@@ -28,6 +28,9 @@ public class Lab8_3 {
 
     public static double evalute(String post){
         String[] str = post.split(",");
+        for(int i = 0 ; i < str.length ; i++){
+            str[i] = str[i].trim();
+        }
         Stack<Double> s = new Stack<>();
         int rank = 0 ;
         double ans;

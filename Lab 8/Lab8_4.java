@@ -45,8 +45,8 @@ public class Lab8_4 {
                 String a = str[i];
                 double c , d;
                 if (a.equals("+") || a.equals("-") | a.equals("*") || a.equals("/") || a.equals("^")) {
-                    d = s.pop();
                     c = s.pop();
+                    d = s.pop();
                     s.push(ans(c, d, a));
                 }
                 else{

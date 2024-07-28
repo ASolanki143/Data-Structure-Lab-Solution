@@ -56,7 +56,7 @@ class Queue{
 
     // Method to enqueue (insert) an element into the queue
     public void enqueue(int element){
-        Node n = new Node(element , null);
+        Node n = new Node(element);
         if(front == null){
             front = n;
             rear = n;
@@ -85,6 +85,10 @@ class Queue{
 
     // Method to display all elements in the queue
     public void display(){
+        if(front == null){
+            System.out.println("---------- Queue is Empty ----------");
+            return;
+        }
         Node temp = front;
         while(temp != rear){
             System.out.print(temp.data + " -> ");

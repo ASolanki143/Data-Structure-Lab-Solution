@@ -54,12 +54,12 @@ public class Lab8_1{
 
     public static void convPostfix(String infix){
         infix += ')';
+        System.out.println(infix);
         Stack<Character> s = new Stack<>();
         s.push('(');
         char c , temp;
         String polish = "";
         int r = 0;
-        c = infix.charAt(0);
         for(int i=0 ; i<infix.length() ; i++){
             c = infix.charAt(i);
             
@@ -76,7 +76,7 @@ public class Lab8_1{
             }
             else{
                 s.pop();
-            } 
+            }
         }
         System.out.println(polish);
         if (!s.isEmpty() || r!=1  ) {

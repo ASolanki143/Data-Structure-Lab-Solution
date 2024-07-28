@@ -43,7 +43,7 @@ public class Lab11_3 {
         while(true) {
             x = sc.nextInt();
             if(x == -1) break;
-            curr = new Node(x , null); // Create new node with data x
+            curr = new Node(x); // Create new node with data x
             prev.next = curr; // Link the previous node to the new node
             prev = curr; // Move prev to the new node
         }
