@@ -41,11 +41,9 @@ public class Lab17_1 {
         int index = (n % 18) + 2;
 
         // Handle collisions using linear probing
-        if (hash[index] != 0) {
-            // Find the next available slot
-            while (hash[index] != 0) {
-                index = (++index) % 20;
-            }
+        // Find the next available slot
+        while (hash[index] != 0) {
+            index = (++index) % 20;
         }
 
         // Return the computed index
