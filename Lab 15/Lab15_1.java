@@ -45,6 +45,7 @@ class ConstructBTree {
 
     // Constructor to initialize indices
     public ConstructBTree() {
+        
         preIndex = 0;
         posIndex = 0;
     }
